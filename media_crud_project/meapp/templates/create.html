@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title> Student File Submission Project </title>
+	<style> * { font-size:30px; font-family:calibri; }
+		.errorlist {color:red;}
+	</style>
+</head>
+<body>
+<center>
+	<a href="{% url 'home' %}"> Home </a>
+	<h1> Create Record </h1>
+	<form method="POST" enctype="multipart/form-data">	
+	{% csrf_token %}
+		<table border="2">
+			{{ fm.as_table }}
+		</table>
+		<input type="submit">
+	</form>
+	{{ msg }}
+</center>
+</body>
+</html>

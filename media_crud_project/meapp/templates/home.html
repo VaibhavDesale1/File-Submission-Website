@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title> Student File Submission Project </title>
+	<style> * { font-size:30px; font-family:calibri; }
+		.errorlist {color:red;}
+	</style>
+</head>
+<body>
+<center>
+	<h1> File App </h1>
+	<a href="{% url 'create' %}"> Create Record </a>
+	<br><br>
+
+	<table border="2" width=50%>
+	{% if data %}
+		<tr>
+			<th> Rno </th>
+			<th> Name </th>
+			<th> File Name </th>
+			<th> Show </th>
+			<th> Delete </th>
+		</tr>
+	{% endif %}
+			{% for d in data %}
+			<tr>
+				<td> {{ d.rno }} </td>
+				<td> {{ d.name }} </td>
+				<td> {{ d.file.name }} </td>
+				<td> <a href={{ d.file.url }} target="_blank" > Show </a> </td>
+				<td> <a href="{% url 'delete' id=d.rno %}" onclick="return confirm('r u sure ???')" > Delete </a> </td>
+			</tr>
+			{% empty %}
+			<tr>
+				<td> No records to show </td>
+			<tr>
+			{% endfor %}
+		</table>
+</center>
+</body>
+</html>
